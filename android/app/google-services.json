@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "12081276368",
+    "project_id": "vodebarco-99809",
+    "storage_bucket": "vodebarco-99809.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12081276368:android:7f113187421a7a144285d5",
+        "android_client_info": {
+          "package_name": "com.flutterflow.vodebarco"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "12081276368-dinvahh941n3r2vq3epg8g92299a7kod.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flutterflow.vodebarco",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "12081276368-nno067kts9e5t0jecovjod49gkpme08m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBoGEjTb9rAsQL9n6FpAbizGm1fOltIdM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "12081276368-nno067kts9e5t0jecovjod49gkpme08m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "12081276368-glhrjisej8uc8pss6p31hukjhqn4lkbi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterflow.vodebarco"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
