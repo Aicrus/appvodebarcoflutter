@@ -104,7 +104,7 @@ class _EscolhadeAcessoWidgetState extends State<EscolhadeAcessoWidget> {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          'Leva menos de um minuto.',
+                                          'Leva menos de um minuto..',
                                           textAlign: TextAlign.center,
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle2

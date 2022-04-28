@@ -32,7 +32,7 @@ class _BilheteConcluidoWidgetState extends State<BilheteConcluidoWidget> {
                   Expanded(
                     child: Container(
                       width: double.infinity,
-                      height: 100,
+                      height: 130,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         image: DecorationImage(
@@ -49,7 +49,7 @@ class _BilheteConcluidoWidgetState extends State<BilheteConcluidoWidget> {
                         ],
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -329,7 +329,7 @@ class _BilheteConcluidoWidgetState extends State<BilheteConcluidoWidget> {
                                                         .override(
                                                           fontFamily: 'Poppins',
                                                           color:
-                                                              Color(0xFFFDFDFD),
+                                                              Color(0xFFEA7A1E),
                                                           fontSize: 16,
                                                           fontWeight:
                                                               FontWeight.bold,

@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../cadastro_sucesso/cadastro_sucesso_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -16,7 +17,7 @@ class ModalCadastroWidget extends StatefulWidget {
 
 class _ModalCadastroWidgetState extends State<ModalCadastroWidget> {
   TextEditingController emailController;
-  TextEditingController emailNomeApelidoController;
+  TextEditingController nomeApelidoController;
   TextEditingController senhaController;
   bool senhaVisibility;
   TextEditingController repetirsenhaController;
@@ -26,7 +27,7 @@ class _ModalCadastroWidgetState extends State<ModalCadastroWidget> {
   void initState() {
     super.initState();
     emailController = TextEditingController();
-    emailNomeApelidoController = TextEditingController();
+    nomeApelidoController = TextEditingController();
     senhaController = TextEditingController();
     senhaVisibility = false;
     repetirsenhaController = TextEditingController();
@@ -49,6 +50,7 @@ class _ModalCadastroWidgetState extends State<ModalCadastroWidget> {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
@@ -76,13 +78,14 @@ class _ModalCadastroWidgetState extends State<ModalCadastroWidget> {
               controller: emailController,
               obscureText: false,
               decoration: InputDecoration(
-                labelText: 'digite seu email',
+                labelText: 'Your Phone Number...',
                 labelStyle: FlutterFlowTheme.of(context).bodyText2.override(
                       fontFamily: 'Outfit',
                       color: Color(0xFF57636C),
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
+                hintText: '+1 (204) 204-2056',
                 hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                       fontFamily: 'Lexend Deca',
                       color: Color(0xFF95A1AC),
@@ -123,16 +126,17 @@ class _ModalCadastroWidgetState extends State<ModalCadastroWidget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(25, 15, 25, 15),
             child: TextFormField(
-              controller: emailNomeApelidoController,
+              controller: nomeApelidoController,
               obscureText: false,
               decoration: InputDecoration(
-                labelText: 'como gostaria de ser chamado?',
+                labelText: 'Your Phone Number...',
                 labelStyle: FlutterFlowTheme.of(context).bodyText2.override(
                       fontFamily: 'Outfit',
                       color: Color(0xFF57636C),
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
+                hintText: '+1 (204) 204-2056',
                 hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                       fontFamily: 'Lexend Deca',
                       color: Color(0xFF95A1AC),
@@ -175,13 +179,14 @@ class _ModalCadastroWidgetState extends State<ModalCadastroWidget> {
               controller: senhaController,
               obscureText: !senhaVisibility,
               decoration: InputDecoration(
-                labelText: 'crie uma senha de acesso',
+                labelText: 'Your Phone Number...',
                 labelStyle: FlutterFlowTheme.of(context).bodyText2.override(
                       fontFamily: 'Outfit',
                       color: Color(0xFF57636C),
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
+                hintText: '+1 (204) 204-2056',
                 hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                       fontFamily: 'Lexend Deca',
                       color: Color(0xFF95A1AC),
@@ -237,13 +242,14 @@ class _ModalCadastroWidgetState extends State<ModalCadastroWidget> {
               controller: repetirsenhaController,
               obscureText: !repetirsenhaVisibility,
               decoration: InputDecoration(
-                labelText: 'repita sua senha ',
+                labelText: 'Your Phone Number...',
                 labelStyle: FlutterFlowTheme.of(context).bodyText2.override(
                       fontFamily: 'Outfit',
                       color: Color(0xFF57636C),
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
+                hintText: '+1 (204) 204-2056',
                 hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                       fontFamily: 'Lexend Deca',
                       color: Color(0xFF95A1AC),
@@ -294,7 +300,7 @@ class _ModalCadastroWidgetState extends State<ModalCadastroWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(25, 20, 25, 0),
             child: FFButtonWidget(
               onPressed: () async {
                 if (senhaController.text != repetirsenhaController.text) {
@@ -317,7 +323,14 @@ class _ModalCadastroWidgetState extends State<ModalCadastroWidget> {
                   return;
                 }
 
-                await Navigator.pushAndRemoveUntil(
+                final usersCreateData = createUsersRecordData(
+                  displayName: nomeApelidoController.text,
+                );
+                await UsersRecord.collection
+                    .doc(user.uid)
+                    .update(usersCreateData);
+
+                await Navigator.push(
                   context,
                   PageTransition(
                     type: PageTransitionType.fade,
@@ -325,7 +338,6 @@ class _ModalCadastroWidgetState extends State<ModalCadastroWidget> {
                     reverseDuration: Duration(milliseconds: 0),
                     child: CadastroSucessoWidget(),
                   ),
-                  (r) => false,
                 );
               },
               text: 'AVANÇAR',

@@ -1,3 +1,34 @@
 {
-  "indexes": []
+  "indexes": [
+    {
+      "collectionGroup": "datas_das_passagens",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "bilhete_passagem",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "mes_numero",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "dia_numero",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "fcm_tokens",
+      "fieldPath": "fcm_token",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    }
+  ]
 }

@@ -32,6 +32,26 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get phoneNumber;
 
   @nullable
+  String get nome;
+
+  @nullable
+  String get sobrenome;
+
+  @nullable
+  String get cpf;
+
+  @nullable
+  String get aniversario;
+
+  @nullable
+  @BuiltValueField(wireName: 'localizacao_user')
+  LatLng get localizacaoUser;
+
+  @nullable
+  @BuiltValueField(wireName: 'ultimo_acesso_app')
+  DateTime get ultimoAcessoApp;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -40,7 +60,11 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..displayName = ''
     ..photoUrl = ''
     ..uid = ''
-    ..phoneNumber = '';
+    ..phoneNumber = ''
+    ..nome = ''
+    ..sobrenome = ''
+    ..cpf = ''
+    ..aniversario = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -70,6 +94,12 @@ Map<String, dynamic> createUsersRecordData({
   String uid,
   DateTime createdTime,
   String phoneNumber,
+  String nome,
+  String sobrenome,
+  String cpf,
+  String aniversario,
+  LatLng localizacaoUser,
+  DateTime ultimoAcessoApp,
 }) =>
     serializers.toFirestore(
         UsersRecord.serializer,
@@ -79,4 +109,10 @@ Map<String, dynamic> createUsersRecordData({
           ..photoUrl = photoUrl
           ..uid = uid
           ..createdTime = createdTime
-          ..phoneNumber = phoneNumber));
+          ..phoneNumber = phoneNumber
+          ..nome = nome
+          ..sobrenome = sobrenome
+          ..cpf = cpf
+          ..aniversario = aniversario
+          ..localizacaoUser = localizacaoUser
+          ..ultimoAcessoApp = ultimoAcessoApp));

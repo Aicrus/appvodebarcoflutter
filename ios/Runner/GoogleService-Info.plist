@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>12081276368-glhrjisej8uc8pss6p31hukjhqn4lkbi.apps.googleusercontent.com</string>
+	<string>12081276368-5ulmlja5ggq1ovsep0hcgvarcfigls0a.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.12081276368-glhrjisej8uc8pss6p31hukjhqn4lkbi</string>
+	<string>com.googleusercontent.apps.12081276368-5ulmlja5ggq1ovsep0hcgvarcfigls0a</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>12081276368-9dionkabqkqp9v4v7h4vl1n0du94g73v.apps.googleusercontent.com</string>
+	<string>12081276368-2eggut4meensdohjrjelnmjqhr6ak1o7.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBi0sXsCcecpabUu5Ffvwb2SjTz2Sq1Y1c</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.flutterflow.vodebarco</string>
+	<string>com.company.vodebarco</string>
 	<key>PROJECT_ID</key>
 	<string>vodebarco-99809</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:12081276368:ios:0a85e4ed0ed54c554285d5</string>
+	<string>1:12081276368:ios:23866a2548a77a344285d5</string>
 </dict>
 </plist>

@@ -1,6 +1,8 @@
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,7 +42,7 @@ class _BuscarNavegacaoWidgetState extends State<BuscarNavegacaoWidget> {
                 Expanded(
                   child: Container(
                     width: double.infinity,
-                    height: 100,
+                    height: 130,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       image: DecorationImage(
@@ -60,7 +62,7 @@ class _BuscarNavegacaoWidgetState extends State<BuscarNavegacaoWidget> {
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -165,132 +167,160 @@ class _BuscarNavegacaoWidgetState extends State<BuscarNavegacaoWidget> {
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(6, 0, 6, 1),
-                    child: Container(
-                      width: double.infinity,
-                      height: 90,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                          color: Color(0xFFEAEAEA),
-                          width: 1,
+              child: StreamBuilder<List<EmbarcacoesRecord>>(
+                stream: queryEmbarcacoesRecord(),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 30,
+                        height: 30,
+                        child: SpinKitRipple(
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          size: 30,
                         ),
                       ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Column(
+                    );
+                  }
+                  List<EmbarcacoesRecord> columnEmbarcacoesRecordList =
+                      snapshot.data;
+                  return Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: List.generate(columnEmbarcacoesRecordList.length,
+                        (columnIndex) {
+                      final columnEmbarcacoesRecord =
+                          columnEmbarcacoesRecordList[columnIndex];
+                      return Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(6, 0, 6, 1),
+                        child: Container(
+                          width: double.infinity,
+                          height: 90,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(
+                              color: Color(0xFFEAEAEA),
+                              width: 1,
+                            ),
+                          ),
+                          child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(10, 8, 8, 8),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.asset(
-                                    'assets/images/f34a68d556885d350ffaf823102e6a6ae04c534d03de41cad710071bbebd633d.jpeg',
-                                    width: 74,
-                                    height: 74,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(8, 1, 0, 0),
-                              child: Column(
+                              Column(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          'Nome da embarcao',
-                                          style: FlutterFlowTheme.of(context)
-                                              .subtitle2
-                                              .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF090F13),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          'Sobre a navegacao',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText2
-                                              .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF95A1AC),
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 2, 0, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Text(
-                                          '4.5',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFFFFB900),
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                        ),
-                                      ],
+                                        10, 8, 8, 8),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: CachedNetworkImage(
+                                        imageUrl:
+                                            columnEmbarcacoesRecord.imagem,
+                                        width: 74,
+                                        height: 74,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
-                            ),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
                               Expanded(
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 8, 0),
-                                  child: Icon(
-                                    Icons.chevron_right_outlined,
-                                    color: Color(0xFF95A1AC),
-                                    size: 24,
+                                      8, 1, 0, 0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              columnEmbarcacoesRecord.nome,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .subtitle2
+                                                  .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF090F13),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              columnEmbarcacoesRecord.sobre,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText2
+                                                  .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF95A1AC),
+                                                    fontSize: 11,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 2, 0, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Text(
+                                              '4.5',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFFFFB900),
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 8, 0),
+                                      child: Icon(
+                                        Icons.chevron_right_outlined,
+                                        color: Color(0xFF95A1AC),
+                                        size: 24,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                        ),
+                      );
+                    }),
+                  );
+                },
               ),
             ),
           ],

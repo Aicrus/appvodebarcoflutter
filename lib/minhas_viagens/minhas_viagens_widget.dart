@@ -36,7 +36,7 @@ class _MinhasViagensWidgetState extends State<MinhasViagensWidget> {
                   Expanded(
                     child: Container(
                       width: double.infinity,
-                      height: 100,
+                      height: 130,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         image: DecorationImage(
@@ -53,7 +53,7 @@ class _MinhasViagensWidgetState extends State<MinhasViagensWidget> {
                         ],
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,13 +94,14 @@ class _MinhasViagensWidgetState extends State<MinhasViagensWidget> {
                     children: [
                       TabBar(
                         labelColor: Color(0xFFEA7A1E),
+                        unselectedLabelColor: Color(0xFFB5B5B5),
                         labelStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Poppins',
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
                                 ),
-                        indicatorColor: Color(0xFFCDCDCD),
+                        indicatorColor: Color(0xFFDBDBDB),
                         tabs: [
                           Tab(
                             text: 'Próximas viagens',
@@ -117,22 +118,7 @@ class _MinhasViagensWidgetState extends State<MinhasViagensWidget> {
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      10, 10, 10, 0),
-                                  child: Text(
-                                    'Em andamento',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.black,
-                                          fontSize: 28,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 50, 0, 0),
+                                      0, 25, 0, 0),
                                   child: ListView(
                                     padding: EdgeInsets.zero,
                                     scrollDirection: Axis.vertical,
@@ -378,22 +364,7 @@ class _MinhasViagensWidgetState extends State<MinhasViagensWidget> {
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      10, 10, 10, 0),
-                                  child: Text(
-                                    'Concluídas',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.black,
-                                          fontSize: 28,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 50, 0, 0),
+                                      0, 25, 0, 0),
                                   child: ListView(
                                     padding: EdgeInsets.zero,
                                     scrollDirection: Axis.vertical,
@@ -427,6 +398,12 @@ class _MinhasViagensWidgetState extends State<MinhasViagensWidget> {
                                             height: 100,
                                             decoration: BoxDecoration(
                                               color: Color(0x65090F13),
+                                              image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: Image.network(
+                                                  '',
+                                                ).image,
+                                              ),
                                               borderRadius:
                                                   BorderRadius.circular(8),
                                             ),

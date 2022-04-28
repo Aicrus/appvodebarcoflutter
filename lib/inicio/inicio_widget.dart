@@ -1,6 +1,5 @@
-import '../backend/backend.dart';
+import '../auth/auth_util.dart';
 import '../buscar_navegacao/buscar_navegacao_widget.dart';
-import '../components/modal_bilhete_yes_login_widget.dart';
 import '../components/modalmais_widget.dart';
 import '../estadia/estadia_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -34,7 +33,7 @@ class _InicioWidgetState extends State<InicioWidget> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10, 35, 10, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(10, 60, 10, 0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -54,23 +53,26 @@ class _InicioWidgetState extends State<InicioWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Olá,',
+                            'Olá, ',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Outfit',
                                       color: Color(0xFFB25B0F),
                                       fontSize: 16,
                                     ),
                           ),
-                          Text(
-                            'Paulo Morales',
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      color: Color(0xFF4B4B4B),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                          AuthUserStreamWidget(
+                            child: Text(
+                              currentUserDisplayName,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    color: Color(0xFF4B4B4B),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ),
                           ),
                         ],
                       ),
@@ -142,7 +144,7 @@ class _InicioWidgetState extends State<InicioWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Outfit',
                                           color: Color(0xFF737373),
                                           fontSize: 16,
                                         ),
@@ -363,171 +365,6 @@ class _InicioWidgetState extends State<InicioWidget> {
                     ),
                   ),
                 ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(15, 8, 15, 0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Text(
-                    'Sua proxima viagem',
-                    textAlign: TextAlign.start,
-                    style: FlutterFlowTheme.of(context).subtitle1.override(
-                          fontFamily: 'Outfit',
-                          color: Color(0xFF0F1113),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
-              child: StreamBuilder<List<UsersRecord>>(
-                stream: queryUsersRecord(),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 30,
-                        height: 30,
-                        child: SpinKitRipple(
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          size: 30,
-                        ),
-                      ),
-                    );
-                  }
-                  List<UsersRecord> linhaListaBilheteUsersRecordList =
-                      snapshot.data;
-                  return SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children:
-                          List.generate(linhaListaBilheteUsersRecordList.length,
-                              (linhaListaBilheteIndex) {
-                        final linhaListaBilheteUsersRecord =
-                            linhaListaBilheteUsersRecordList[
-                                linhaListaBilheteIndex];
-                        return Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                              child: Container(
-                                width: 150,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 3,
-                                      color: Color(0x2E000000),
-                                      offset: Offset(5, 0),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: InkWell(
-                                  onTap: () async {
-                                    await showModalBottomSheet(
-                                      isScrollControlled: true,
-                                      backgroundColor: Colors.transparent,
-                                      context: context,
-                                      builder: (context) {
-                                        return Padding(
-                                          padding:
-                                              MediaQuery.of(context).viewInsets,
-                                          child: Container(
-                                            height: 380,
-                                            child: ModalBilheteYesLoginWidget(),
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: double.infinity,
-                                    child: Stack(
-                                      children: [
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius: BorderRadius.only(
-                                                bottomLeft: Radius.circular(0),
-                                                bottomRight: Radius.circular(0),
-                                                topLeft: Radius.circular(10),
-                                                topRight: Radius.circular(10),
-                                              ),
-                                              child: Image.asset(
-                                                'assets/images/4162f40fb711cb14d940479f3bdd8364087f55dfdca90225635514fac02000da.jpeg',
-                                                width: 100,
-                                                height: 130,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 5, 0, 0),
-                                              child: Text(
-                                                'Manaus para \nTabatinga',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 13,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          lineHeight: 1.1,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 5, 0, 0),
-                                              child: Text(
-                                                'R\$ 450,00',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color:
-                                                              Color(0xFFEA7A1E),
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        );
-                      }),
-                    ),
-                  );
-                },
               ),
             ),
           ],

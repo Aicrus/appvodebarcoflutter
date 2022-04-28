@@ -8,7 +8,35 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    match /Bilhete_passagens/{document} {
+    match /bilhete_passagem/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /embarcacoes/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /bilhete_comprado/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /datas_das_passagens/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /documentos_passageiros/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if false;

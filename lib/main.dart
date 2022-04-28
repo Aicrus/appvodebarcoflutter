@@ -3,24 +3,21 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'auth/firebase_user_provider.dart';
-
-import 'flutter_flow/flutter_flow_util.dart';
+import 'auth/auth_util.dart';
+import 'backend/push_notifications/push_notifications_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:vo_de_barco/inicio_sem_login/inicio_sem_login_widget.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'inicio/inicio_widget.dart';
-import 'buscar_passagem/buscar_passagem_widget.dart';
-import 'minhas_viagens/minhas_viagens_widget.dart';
-import 'mais/mais_widget.dart';
+import 'index.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  await FlutterFlowTheme.initialize();
+  FFAppState(); // Initialize FFAppState
 
   runApp(MyApp());
 }
@@ -28,7 +25,7 @@ void main() async {
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 
   static _MyAppState of(BuildContext context) =>
       context.findAncestorStateOfType<_MyAppState>();
@@ -36,16 +33,14 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Locale _locale;
-  ThemeMode _themeMode = FlutterFlowTheme.themeMode;
+  ThemeMode _themeMode = ThemeMode.system;
+
   Stream<VoDeBarcoFirebaseUser> userStream;
   VoDeBarcoFirebaseUser initialUser;
   bool displaySplashImage = true;
 
-  void setLocale(Locale value) => setState(() => _locale = value);
-  void setThemeMode(ThemeMode mode) => setState(() {
-        _themeMode = mode;
-        FlutterFlowTheme.saveThemeMode(mode);
-      });
+  final authUserSub = authenticatedUserStream.listen((_) {});
+  final fcmTokenSub = fcmTokenUserStream.listen((_) {});
 
   @override
   void initState() {
@@ -53,8 +48,22 @@ class _MyAppState extends State<MyApp> {
     userStream = voDeBarcoFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
-        Duration(seconds: 1), () => setState(() => displaySplashImage = false));
+      Duration(seconds: 1),
+      () => setState(() => displaySplashImage = false),
+    );
   }
+
+  @override
+  void dispose() {
+    authUserSub.cancel();
+    fcmTokenSub.cancel();
+    super.dispose();
+  }
+
+  void setLocale(Locale value) => setState(() => _locale = value);
+  void setThemeMode(ThemeMode mode) => setState(() {
+        _themeMode = mode;
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -71,11 +80,10 @@ class _MyAppState extends State<MyApp> {
         Locale('pt', ''),
       ],
       theme: ThemeData(brightness: Brightness.light),
-      darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
           ? Container(
-              color: Colors.transparent,
+              color: Colors.white,
               child: Builder(
                 builder: (context) => Image.asset(
                   'assets/images/logoapplevo.png',
@@ -84,7 +92,7 @@ class _MyAppState extends State<MyApp> {
               ),
             )
           : currentUser.loggedIn
-              ? NavBarPage()
+              ? PushNotificationsHandler(child: NavBarPage())
               : InicioSemLoginWidget(),
     );
   }
@@ -125,9 +133,9 @@ class _NavBarPageState extends State<NavBarPage> {
         onTabChange: (i) =>
             setState(() => _currentPage = tabs.keys.toList()[i]),
         backgroundColor: Colors.white,
-        color: Color(0xFF383838),
+        color: Color(0xFF464646),
         activeColor: Color(0xFFF28A31),
-        tabBackgroundColor: Color(0x07F28A31),
+        tabBackgroundColor: Color(0x1CF28A31),
         tabBorderRadius: 100,
         tabMargin: EdgeInsetsDirectional.fromSTEB(1, 15, 1, 25),
         padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),

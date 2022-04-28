@@ -33,7 +33,7 @@ class _BilheteEmAndamentoWidgetState extends State<BilheteEmAndamentoWidget> {
                   Expanded(
                     child: Container(
                       width: double.infinity,
-                      height: 100,
+                      height: 130,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         image: DecorationImage(
@@ -50,7 +50,7 @@ class _BilheteEmAndamentoWidgetState extends State<BilheteEmAndamentoWidget> {
                         ],
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

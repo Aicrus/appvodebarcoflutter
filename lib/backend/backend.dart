@@ -5,7 +5,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/users_record.dart';
-import 'schema/bilhete_passagens_record.dart';
+import 'schema/bilhete_passagem_record.dart';
+import 'schema/embarcacoes_record.dart';
+import 'schema/bilhete_comprado_record.dart';
+import 'schema/datas_das_passagens_record.dart';
+import 'schema/documentos_passageiros_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -14,7 +18,11 @@ export 'schema/index.dart';
 export 'schema/serializers.dart';
 
 export 'schema/users_record.dart';
-export 'schema/bilhete_passagens_record.dart';
+export 'schema/bilhete_passagem_record.dart';
+export 'schema/embarcacoes_record.dart';
+export 'schema/bilhete_comprado_record.dart';
+export 'schema/datas_das_passagens_record.dart';
+export 'schema/documentos_passageiros_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord(
@@ -46,33 +54,161 @@ Future<FFFirestorePage<UsersRecord>> queryUsersRecordPage({
       isStream: isStream,
     );
 
-/// Functions to query BilhetePassagensRecords (as a Stream and as a Future).
-Stream<List<BilhetePassagensRecord>> queryBilhetePassagensRecord(
+/// Functions to query BilhetePassagemRecords (as a Stream and as a Future).
+Stream<List<BilhetePassagemRecord>> queryBilhetePassagemRecord(
         {Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
     queryCollection(
-        BilhetePassagensRecord.collection, BilhetePassagensRecord.serializer,
+        BilhetePassagemRecord.collection, BilhetePassagemRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
-Future<List<BilhetePassagensRecord>> queryBilhetePassagensRecordOnce(
+Future<List<BilhetePassagemRecord>> queryBilhetePassagemRecordOnce(
         {Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
     queryCollectionOnce(
-        BilhetePassagensRecord.collection, BilhetePassagensRecord.serializer,
+        BilhetePassagemRecord.collection, BilhetePassagemRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
-Future<FFFirestorePage<BilhetePassagensRecord>>
-    queryBilhetePassagensRecordPage({
+Future<FFFirestorePage<BilhetePassagemRecord>> queryBilhetePassagemRecordPage({
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      BilhetePassagemRecord.collection,
+      BilhetePassagemRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query EmbarcacoesRecords (as a Stream and as a Future).
+Stream<List<EmbarcacoesRecord>> queryEmbarcacoesRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(EmbarcacoesRecord.collection, EmbarcacoesRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<EmbarcacoesRecord>> queryEmbarcacoesRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(
+        EmbarcacoesRecord.collection, EmbarcacoesRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<FFFirestorePage<EmbarcacoesRecord>> queryEmbarcacoesRecordPage({
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      EmbarcacoesRecord.collection,
+      EmbarcacoesRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query BilheteCompradoRecords (as a Stream and as a Future).
+Stream<List<BilheteCompradoRecord>> queryBilheteCompradoRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(
+        BilheteCompradoRecord.collection, BilheteCompradoRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<BilheteCompradoRecord>> queryBilheteCompradoRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(
+        BilheteCompradoRecord.collection, BilheteCompradoRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<FFFirestorePage<BilheteCompradoRecord>> queryBilheteCompradoRecordPage({
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      BilheteCompradoRecord.collection,
+      BilheteCompradoRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query DatasDasPassagensRecords (as a Stream and as a Future).
+Stream<List<DatasDasPassagensRecord>> queryDatasDasPassagensRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(
+        DatasDasPassagensRecord.collection, DatasDasPassagensRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<DatasDasPassagensRecord>> queryDatasDasPassagensRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(
+        DatasDasPassagensRecord.collection, DatasDasPassagensRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<FFFirestorePage<DatasDasPassagensRecord>>
+    queryDatasDasPassagensRecordPage({
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
   bool isStream,
 }) =>
         queryCollectionPage(
-          BilhetePassagensRecord.collection,
-          BilhetePassagensRecord.serializer,
+          DatasDasPassagensRecord.collection,
+          DatasDasPassagensRecord.serializer,
+          queryBuilder: queryBuilder,
+          nextPageMarker: nextPageMarker,
+          pageSize: pageSize,
+          isStream: isStream,
+        );
+
+/// Functions to query DocumentosPassageirosRecords (as a Stream and as a Future).
+Stream<List<DocumentosPassageirosRecord>> queryDocumentosPassageirosRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(DocumentosPassageirosRecord.collection,
+        DocumentosPassageirosRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<DocumentosPassageirosRecord>> queryDocumentosPassageirosRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(DocumentosPassageirosRecord.collection,
+        DocumentosPassageirosRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<FFFirestorePage<DocumentosPassageirosRecord>>
+    queryDocumentosPassageirosRecordPage({
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+        queryCollectionPage(
+          DocumentosPassageirosRecord.collection,
+          DocumentosPassageirosRecord.serializer,
           queryBuilder: queryBuilder,
           nextPageMarker: nextPageMarker,
           pageSize: pageSize,
@@ -163,4 +299,24 @@ Future<FFFirestorePage<T>> queryCollectionPage<T>(
   final dataStream = docSnapshotStream?.map(getDocs);
   final nextPageToken = docSnapshot.docs.isEmpty ? null : docSnapshot.docs.last;
   return FFFirestorePage(data, dataStream, nextPageToken);
+}
+
+// Creates a Firestore record representing the logged in user if it doesn't yet exist
+Future maybeCreateUser(User user) async {
+  final userRecord = UsersRecord.collection.doc(user.uid);
+  final userExists = await userRecord.get().then((u) => u.exists);
+  if (userExists) {
+    return;
+  }
+
+  final userData = createUsersRecordData(
+    email: user.email,
+    displayName: user.displayName,
+    photoUrl: user.photoURL,
+    uid: user.uid,
+    phoneNumber: user.phoneNumber,
+    createdTime: getCurrentTimestamp,
+  );
+
+  await userRecord.set(userData);
 }

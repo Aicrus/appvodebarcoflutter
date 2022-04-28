@@ -39,7 +39,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget> {
                       children: [
                         Padding(
                           padding:
-                              EdgeInsetsDirectional.fromSTEB(15, 40, 15, 270),
+                              EdgeInsetsDirectional.fromSTEB(15, 50, 15, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +80,7 @@ class _RestaurantesWidgetState extends State<RestaurantesWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Colors.white,
-                                          fontSize: 22,
+                                          fontSize: 24,
                                           fontWeight: FontWeight.bold,
                                           lineHeight: 1.1,
                                         ),

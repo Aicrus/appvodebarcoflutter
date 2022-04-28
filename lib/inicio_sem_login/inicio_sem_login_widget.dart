@@ -1,7 +1,7 @@
 import '../backend/backend.dart';
 import '../buscar_navegacao/buscar_navegacao_widget.dart';
-import '../components/modal_bilhete_no_login_widget.dart';
 import '../components/modalmais_widget.dart';
+import '../comprar_passagem/comprar_passagem_widget.dart';
 import '../escolhade_acesso/escolhade_acesso_widget.dart';
 import '../estadia/estadia_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -35,7 +35,7 @@ class _InicioSemLoginWidgetState extends State<InicioSemLoginWidget> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10, 35, 10, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(10, 40, 10, 0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -125,7 +125,7 @@ class _InicioSemLoginWidgetState extends State<InicioSemLoginWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Outfit',
                                           color: Color(0xFF737373),
                                           fontSize: 16,
                                         ),
@@ -367,8 +367,8 @@ class _InicioSemLoginWidgetState extends State<InicioSemLoginWidget> {
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(15, 8, 15, 0),
-              child: StreamBuilder<List<BilhetePassagensRecord>>(
-                stream: queryBilhetePassagensRecord(),
+              child: StreamBuilder<List<UsersRecord>>(
+                stream: queryUsersRecord(),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -383,21 +383,21 @@ class _InicioSemLoginWidgetState extends State<InicioSemLoginWidget> {
                       ),
                     );
                   }
-                  List<BilhetePassagensRecord>
-                      linhaListaBilheteBilhetePassagensRecordList =
+                  List<UsersRecord> linhaListaBilheteUsersRecordList =
                       snapshot.data;
                   return SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
-                      children: List.generate(
-                          linhaListaBilheteBilhetePassagensRecordList.length,
-                          (linhaListaBilheteIndex) {
-                        final linhaListaBilheteBilhetePassagensRecord =
-                            linhaListaBilheteBilhetePassagensRecordList[
+                      children:
+                          List.generate(linhaListaBilheteUsersRecordList.length,
+                              (linhaListaBilheteIndex) {
+                        final linhaListaBilheteUsersRecord =
+                            linhaListaBilheteUsersRecordList[
                                 linhaListaBilheteIndex];
                         return Column(
                           mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding:
@@ -418,20 +418,15 @@ class _InicioSemLoginWidgetState extends State<InicioSemLoginWidget> {
                                 ),
                                 child: InkWell(
                                   onTap: () async {
-                                    await showModalBottomSheet(
-                                      isScrollControlled: true,
-                                      backgroundColor: Colors.transparent,
-                                      context: context,
-                                      builder: (context) {
-                                        return Padding(
-                                          padding:
-                                              MediaQuery.of(context).viewInsets,
-                                          child: Container(
-                                            height: 380,
-                                            child: ModalBilheteNoLoginWidget(),
-                                          ),
-                                        );
-                                      },
+                                    await Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                        reverseDuration:
+                                            Duration(milliseconds: 0),
+                                        child: ComprarPassagemWidget(),
+                                      ),
                                     );
                                   },
                                   child: Container(
