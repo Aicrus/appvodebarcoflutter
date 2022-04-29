@@ -21,3 +21,6 @@ export 'comprar_passagem/comprar_passagem_widget.dart'
 export 'data_viagem/data_viagem_widget.dart' show DataViagemWidget;
 export 'cadastro_sucesso/cadastro_sucesso_widget.dart'
     show CadastroSucessoWidget;
+export 'checkout/checkout_widget.dart' show CheckoutWidget;
+export 'card/card_widget.dart' show CardWidget;
+export 'pay_aprovado/pay_aprovado_widget.dart' show PayAprovadoWidget;

@@ -1,5 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../checkout/checkout_widget.dart';
+import '../components/modal_atualizar_data_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -291,7 +293,7 @@ class _ComprarPassagemWidgetState extends State<ComprarPassagemWidget> {
                                                           padding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(5,
-                                                                      0, 10, 0),
+                                                                      0, 15, 0),
                                                           child: Text(
                                                             formatNumber(
                                                               columnBilhetePassagemRecord
@@ -495,62 +497,84 @@ class _ComprarPassagemWidgetState extends State<ComprarPassagemWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  Container(
-                                    width: double.infinity,
-                                    height: 60,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(18),
-                                      border: Border.all(
-                                        color: Color(0xFFCDCDCD),
-                                        width: 1,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  15, 0, 0, 0),
-                                          child: Icon(
-                                            Icons.date_range,
-                                            color: Color(0xFFEA7A1E),
-                                            size: 26,
-                                          ),
+                                  InkWell(
+                                    onTap: () async {
+                                      await showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        backgroundColor: Colors.transparent,
+                                        context: context,
+                                        builder: (context) {
+                                          return Padding(
+                                            padding: MediaQuery.of(context)
+                                                .viewInsets,
+                                            child: ModalAtualizarDataWidget(
+                                              infobilhete:
+                                                  columnBilhetePassagemRecord
+                                                      .reference,
+                                              bilhetecomprado:
+                                                  comprarPassagemBilheteCompradoRecord
+                                                      .reference,
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 60,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(18),
+                                        border: Border.all(
+                                          color: Color(0xFFCDCDCD),
+                                          width: 1,
                                         ),
-                                        Expanded(
-                                          child: Padding(
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    5, 0, 0, 0),
-                                            child: Text(
-                                              dateTimeFormat(
-                                                  'd/M/y',
-                                                  comprarPassagemBilheteCompradoRecord
-                                                      .dataViagem),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        color: Colors.black,
-                                                        fontSize: 14,
-                                                      ),
+                                                    15, 0, 0, 0),
+                                            child: Icon(
+                                              Icons.date_range,
+                                              color: Color(0xFFEA7A1E),
+                                              size: 26,
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 8, 0),
-                                          child: Icon(
-                                            Icons.chevron_right_rounded,
-                                            color: Color(0xFF979797),
-                                            size: 24,
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(5, 0, 0, 0),
+                                              child: Text(
+                                                dateTimeFormat(
+                                                    'd/M/y',
+                                                    comprarPassagemBilheteCompradoRecord
+                                                        .dataViagem),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: Colors.black,
+                                                          fontSize: 14,
+                                                        ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 8, 0),
+                                            child: Icon(
+                                              Icons.chevron_right_rounded,
+                                              color: Color(0xFF979797),
+                                              size: 24,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   Padding(
@@ -637,6 +661,9 @@ class _ComprarPassagemWidgetState extends State<ComprarPassagemWidget> {
                                                                 color: Colors
                                                                     .black,
                                                                 fontSize: 14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
                                                               ),
                                                         ),
                                                       ),
@@ -684,7 +711,10 @@ class _ComprarPassagemWidgetState extends State<ComprarPassagemWidget> {
                                                                     'Poppins',
                                                                 color: Colors
                                                                     .black,
-                                                                fontSize: 14,
+                                                                fontSize: 15,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
                                                               ),
                                                         ),
                                                       ),
@@ -697,6 +727,14 @@ class _ComprarPassagemWidgetState extends State<ComprarPassagemWidget> {
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
+                                              if ((comprarPassagemBilheteCompradoRecord
+                                                      .quantAdulto) ==
+                                                  0)
+                                                Icon(
+                                                  Icons.remove_circle,
+                                                  color: Color(0xFFE7E7E7),
+                                                  size: 28,
+                                                ),
                                               if ((comprarPassagemBilheteCompradoRecord
                                                       .quantAdulto) >
                                                   0)
@@ -866,6 +904,9 @@ class _ComprarPassagemWidgetState extends State<ComprarPassagemWidget> {
                                                                 color: Colors
                                                                     .black,
                                                                 fontSize: 14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
                                                               ),
                                                         ),
                                                       ),
@@ -913,7 +954,10 @@ class _ComprarPassagemWidgetState extends State<ComprarPassagemWidget> {
                                                                     'Poppins',
                                                                 color: Colors
                                                                     .black,
-                                                                fontSize: 14,
+                                                                fontSize: 15,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
                                                               ),
                                                         ),
                                                       ),
@@ -926,21 +970,44 @@ class _ComprarPassagemWidgetState extends State<ComprarPassagemWidget> {
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              InkWell(
-                                                onTap: () async {
-                                                  final bilheteCompradoUpdateData =
-                                                      createBilheteCompradoRecordData();
-                                                  await comprarPassagemBilheteCompradoRecord
-                                                      .reference
-                                                      .update(
-                                                          bilheteCompradoUpdateData);
-                                                },
-                                                child: Icon(
+                                              if ((comprarPassagemBilheteCompradoRecord
+                                                      .quantCrianca) ==
+                                                  0)
+                                                Icon(
                                                   Icons.remove_circle,
-                                                  color: Color(0xFFFFAB61),
+                                                  color: Color(0xFFE7E7E7),
                                                   size: 28,
                                                 ),
-                                              ),
+                                              if ((comprarPassagemBilheteCompradoRecord
+                                                      .quantCrianca) >
+                                                  0)
+                                                InkWell(
+                                                  onTap: () async {
+                                                    final bilheteCompradoUpdateData =
+                                                        {
+                                                      ...createBilheteCompradoRecordData(
+                                                        subtotalCrianca: functions
+                                                            .subtrairSubtotal(
+                                                                comprarPassagemBilheteCompradoRecord
+                                                                    .subtotalCrianca,
+                                                                comprarPassagemBilheteCompradoRecord
+                                                                    .precoCrianca),
+                                                      ),
+                                                      'quant_crianca':
+                                                          FieldValue.increment(
+                                                              -1),
+                                                    };
+                                                    await comprarPassagemBilheteCompradoRecord
+                                                        .reference
+                                                        .update(
+                                                            bilheteCompradoUpdateData);
+                                                  },
+                                                  child: Icon(
+                                                    Icons.remove_circle,
+                                                    color: Color(0xFFFFAB61),
+                                                    size: 28,
+                                                  ),
+                                                ),
                                               Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(5, 0, 5, 0),
@@ -972,11 +1039,6 @@ class _ComprarPassagemWidgetState extends State<ComprarPassagemWidget> {
                                                                 .subtotalCrianca,
                                                             comprarPassagemBilheteCompradoRecord
                                                                 .precoCrianca),
-                                                        totalPassagens: functions.somarSubtotal(
-                                                            comprarPassagemBilheteCompradoRecord
-                                                                .subtotalAdulto,
-                                                            comprarPassagemBilheteCompradoRecord
-                                                                .subtotalCrianca),
                                                       ),
                                                       'quant_crianca':
                                                           FieldValue.increment(
@@ -998,35 +1060,6 @@ class _ComprarPassagemWidgetState extends State<ComprarPassagemWidget> {
                                           ),
                                         ],
                                       ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 15, 0, 10),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          valueOrDefault<String>(
-                                            functions
-                                                .somarSubtotal(
-                                                    comprarPassagemBilheteCompradoRecord
-                                                        .subtotalAdulto,
-                                                    comprarPassagemBilheteCompradoRecord
-                                                        .subtotalCrianca)
-                                                .toString(),
-                                            '00',
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                        ),
-                                      ],
                                     ),
                                   ),
                                   Padding(
@@ -1158,8 +1191,8 @@ class _ComprarPassagemWidgetState extends State<ComprarPassagemWidget> {
                                                                 fontFamily:
                                                                     'Outfit',
                                                                 color: Color(
-                                                                    0xFF57636C),
-                                                                fontSize: 15,
+                                                                    0xFF0F1113),
+                                                                fontSize: 12,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
@@ -1460,10 +1493,23 @@ class _ComprarPassagemWidgetState extends State<ComprarPassagemWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 10, 0, 0),
                                     child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
+                                      onPressed: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                            reverseDuration:
+                                                Duration(milliseconds: 0),
+                                            child: CheckoutWidget(
+                                              bilhetecomprado:
+                                                  comprarPassagemBilheteCompradoRecord
+                                                      .reference,
+                                            ),
+                                          ),
+                                        );
                                       },
-                                      text: 'ACESSAR',
+                                      text: 'AVANÇAR',
                                       options: FFButtonOptions(
                                         width: 300,
                                         height: 55,

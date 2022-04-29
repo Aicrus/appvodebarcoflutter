@@ -78,14 +78,13 @@ class _ModalCadastroWidgetState extends State<ModalCadastroWidget> {
               controller: emailController,
               obscureText: false,
               decoration: InputDecoration(
-                labelText: 'Your Phone Number...',
+                labelText: 'ex.: usuario@gmail.com',
                 labelStyle: FlutterFlowTheme.of(context).bodyText2.override(
                       fontFamily: 'Outfit',
                       color: Color(0xFF57636C),
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
-                hintText: '+1 (204) 204-2056',
                 hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                       fontFamily: 'Lexend Deca',
                       color: Color(0xFF95A1AC),
@@ -129,14 +128,13 @@ class _ModalCadastroWidgetState extends State<ModalCadastroWidget> {
               controller: nomeApelidoController,
               obscureText: false,
               decoration: InputDecoration(
-                labelText: 'Your Phone Number...',
+                labelText: 'Como gostaria de ser chamado?',
                 labelStyle: FlutterFlowTheme.of(context).bodyText2.override(
                       fontFamily: 'Outfit',
                       color: Color(0xFF57636C),
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
-                hintText: '+1 (204) 204-2056',
                 hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                       fontFamily: 'Lexend Deca',
                       color: Color(0xFF95A1AC),
@@ -179,14 +177,13 @@ class _ModalCadastroWidgetState extends State<ModalCadastroWidget> {
               controller: senhaController,
               obscureText: !senhaVisibility,
               decoration: InputDecoration(
-                labelText: 'Your Phone Number...',
+                labelText: 'Crie uma senha de acesso',
                 labelStyle: FlutterFlowTheme.of(context).bodyText2.override(
                       fontFamily: 'Outfit',
                       color: Color(0xFF57636C),
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
-                hintText: '+1 (204) 204-2056',
                 hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                       fontFamily: 'Lexend Deca',
                       color: Color(0xFF95A1AC),
@@ -242,14 +239,13 @@ class _ModalCadastroWidgetState extends State<ModalCadastroWidget> {
               controller: repetirsenhaController,
               obscureText: !repetirsenhaVisibility,
               decoration: InputDecoration(
-                labelText: 'Your Phone Number...',
+                labelText: 'repita sua senha ',
                 labelStyle: FlutterFlowTheme.of(context).bodyText2.override(
                       fontFamily: 'Outfit',
                       color: Color(0xFF57636C),
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
-                hintText: '+1 (204) 204-2056',
                 hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                       fontFamily: 'Lexend Deca',
                       color: Color(0xFF95A1AC),

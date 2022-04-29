@@ -422,7 +422,6 @@ class _DataViagemWidgetState extends State<DataViagemWidget> {
                                       onTap: () async {
                                         final bilheteCompradoCreateData =
                                             createBilheteCompradoRecordData(
-                                          statusDePagamento: false,
                                           destino: columnBilhetePassagemRecord
                                               .cidadeDestino,
                                           dataViagem:
@@ -448,6 +447,7 @@ class _DataViagemWidgetState extends State<DataViagemWidget> {
                                           quantCrianca: 0,
                                           criadoEm: getCurrentTimestamp,
                                           totalPassagem: 0.0,
+                                          pagouStatus: 'aguardando pagamento',
                                         );
                                         await BilheteCompradoRecord.collection
                                             .doc()

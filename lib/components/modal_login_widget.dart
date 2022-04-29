@@ -73,14 +73,13 @@ class _ModalLoginWidgetState extends State<ModalLoginWidget> {
                 controller: emailController,
                 obscureText: false,
                 decoration: InputDecoration(
-                  labelText: 'Your Phone Number...',
+                  labelText: 'email de acesso',
                   labelStyle: FlutterFlowTheme.of(context).bodyText2.override(
                         fontFamily: 'Outfit',
                         color: Color(0xFF57636C),
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
                       ),
-                  hintText: '+1 (204) 204-2056',
                   hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                         fontFamily: 'Lexend Deca',
                         color: Color(0xFF95A1AC),
@@ -124,7 +123,7 @@ class _ModalLoginWidgetState extends State<ModalLoginWidget> {
                 controller: senhaController,
                 obscureText: !senhaVisibility,
                 decoration: InputDecoration(
-                  labelText: 'Your Phone Number...',
+                  labelText: 'senha de acesso',
                   labelStyle: FlutterFlowTheme.of(context).bodyText2.override(
                         fontFamily: 'Outfit',
                         color: Color(0xFF57636C),

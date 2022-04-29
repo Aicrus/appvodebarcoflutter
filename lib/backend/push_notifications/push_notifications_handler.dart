@@ -98,6 +98,13 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         infoembarcacao: getParameter(data, 'infoembarcacao'),
       ),
   'CadastroSucesso': (data) async => CadastroSucessoWidget(),
+  'Checkout': (data) async => CheckoutWidget(
+        bilhetecomprado: getParameter(data, 'bilhetecomprado'),
+      ),
+  'Card': (data) async => CardWidget(
+        bilhetecomprado: getParameter(data, 'bilhetecomprado'),
+      ),
+  'PayAprovado': (data) async => PayAprovadoWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

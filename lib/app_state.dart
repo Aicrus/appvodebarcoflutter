@@ -18,7 +18,7 @@ class FFAppState {
 
   SharedPreferences prefs;
 
-  DateTime dataviagem;
+  String idbilhete = '';
 }
 
 LatLng _latLngFromString(String val) {

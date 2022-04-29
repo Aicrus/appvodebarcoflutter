@@ -12,10 +12,6 @@ abstract class BilheteCompradoRecord
       _$bilheteCompradoRecordSerializer;
 
   @nullable
-  @BuiltValueField(wireName: 'status_de_pagamento')
-  bool get statusDePagamento;
-
-  @nullable
   String get destino;
 
   @nullable
@@ -75,12 +71,15 @@ abstract class BilheteCompradoRecord
   double get totalPassagens;
 
   @nullable
+  @BuiltValueField(wireName: 'pagou_status')
+  String get pagouStatus;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(BilheteCompradoRecordBuilder builder) =>
       builder
-        ..statusDePagamento = false
         ..destino = ''
         ..quantAdulto = 0
         ..quantCrianca = 0
@@ -91,7 +90,8 @@ abstract class BilheteCompradoRecord
         ..subtotalCrianca = 0.0
         ..precoAdulto = 0.0
         ..precoCrianca = 0.0
-        ..totalPassagens = 0.0;
+        ..totalPassagens = 0.0
+        ..pagouStatus = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('bilhete_comprado');
@@ -116,7 +116,6 @@ abstract class BilheteCompradoRecord
 }
 
 Map<String, dynamic> createBilheteCompradoRecordData({
-  bool statusDePagamento,
   String destino,
   DateTime dataViagem,
   int quantAdulto,
@@ -132,11 +131,11 @@ Map<String, dynamic> createBilheteCompradoRecordData({
   double precoAdulto,
   double precoCrianca,
   double totalPassagens,
+  String pagouStatus,
 }) =>
     serializers.toFirestore(
         BilheteCompradoRecord.serializer,
         BilheteCompradoRecord((b) => b
-          ..statusDePagamento = statusDePagamento
           ..destino = destino
           ..dataViagem = dataViagem
           ..quantAdulto = quantAdulto
@@ -151,4 +150,5 @@ Map<String, dynamic> createBilheteCompradoRecordData({
           ..subtotalCrianca = subtotalCrianca
           ..precoAdulto = precoAdulto
           ..precoCrianca = precoCrianca
-          ..totalPassagens = totalPassagens));
+          ..totalPassagens = totalPassagens
+          ..pagouStatus = pagouStatus));
